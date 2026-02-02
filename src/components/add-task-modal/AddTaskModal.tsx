@@ -26,13 +26,13 @@ export default function AddTaskModal({
   task?: Task | null;
 }) {
   const {
-  register,
-  handleSubmit,
-  reset,
-  formState: { isValid },
-} = useForm<AddTaskForm>({
-  mode: "onChange",
-});
+    register,
+    handleSubmit,
+    reset,
+    formState: { isValid },
+  } = useForm<AddTaskForm>({
+    mode: "onChange",
+  });
 
   useEffect(() => {
     if (task) {
@@ -124,13 +124,13 @@ export default function AddTaskModal({
           Close
         </Button>
         <Button
-  variant="primary"
-  type="submit"
-  form="addTaskForm"
-  disabled={!isValid}
->
-  {task ? "Save Changes" : "Create Task"}
-</Button>
+          variant="primary"
+          type="submit"
+          form="addTaskForm"
+          disabled={!isValid}
+        >
+          {task ? "Save Changes" : "Create Task"}
+        </Button>
       </Modal.Footer>
     </Modal>
   );

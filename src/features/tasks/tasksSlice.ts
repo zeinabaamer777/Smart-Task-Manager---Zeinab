@@ -49,7 +49,7 @@ const tasksSlice = createSlice({
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     },
     editTask(state, action: PayloadAction<Task>) {
-      const task = state.find(t => t.id === action.payload.id);
+      const task = state.find((t) => t.id === action.payload.id);
       if (task) {
         task.title = action.payload.title;
         task.status = action.payload.status;
@@ -58,7 +58,7 @@ const tasksSlice = createSlice({
       }
     },
     deleteTask(state, action: PayloadAction<string>) {
-      const updated = state.filter(t => t.id !== action.payload);
+      const updated = state.filter((t) => t.id !== action.payload);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       return updated;
     },
