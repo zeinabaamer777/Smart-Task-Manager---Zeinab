@@ -50,55 +50,76 @@ export default function TasksPage() {
         + Add Task
       </Button>
 
-      <div className="d-flex align-items-center gap-3 my-5">
-        <div className="d-flex justify-content-between">
-          <ButtonGroup>
-            <Button
-              variant={filter === "ALL" ? "primary" : "outline-primary"}
-              onClick={() => setFilter("ALL")}
-            >
-              All
-            </Button>
-            <Button
-              variant={filter === "PENDING" ? "primary" : "outline-primary"}
-              onClick={() => setFilter("PENDING")}
-            >
-              Pending
-            </Button>
+     <div className="d-flex flex-column flex-lg-row gap-3 my-5 align-items-stretch align-items-lg-center">
+  
+  {/* Status filters */}
+<div
+  className="
+    d-flex
+    gap-2
+    w-100
+    overflow-auto
+    flex-nowrap
+  "
+>
+  <Button
+    className="rounded-pill flex-shrink-0 px-3"
+    variant={filter === "ALL" ? "primary" : "outline-primary"}
+    onClick={() => setFilter("ALL")}
+  >
+    All
+  </Button>
 
-            <Button
-              variant={filter === "IN_PROGRESS" ? "primary" : "outline-primary"}
-              onClick={() => setFilter("IN_PROGRESS")}
-            >
-              In progress
-            </Button>
+  <Button
+    className="rounded-pill flex-shrink-0 px-3"
+    variant={filter === "PENDING" ? "primary" : "outline-primary"}
+    onClick={() => setFilter("PENDING")}
+  >
+    Pending
+  </Button>
 
-            <Button
-              variant={filter === "COMPLETED" ? "primary" : "outline-primary"}
-              onClick={() => setFilter("COMPLETED")}
-            >
-              Completed
-            </Button>
-          </ButtonGroup>
-        </div>
+  <Button
+    className="rounded-pill flex-shrink-0 px-3"
+    variant={filter === "IN_PROGRESS" ? "primary" : "outline-primary"}
+    onClick={() => setFilter("IN_PROGRESS")}
+  >
+    In progress
+  </Button>
 
-        <Form.Select
-          style={{ maxWidth: "220px" }}
-          value={selectedUserId}
-          onChange={(e) => {
-            const value = e.target.value;
-            setSelectedUserId(value === "ALL" ? "ALL" : Number(value));
-          }}
-        >
-          <option value="ALL">All Users</option>
+  <Button
+    className="rounded-pill flex-shrink-0 px-3"
+    variant={filter === "COMPLETED" ? "primary" : "outline-primary"}
+    onClick={() => setFilter("COMPLETED")}
+  >
+    Completed
+  </Button>
+</div>
 
-          {users.map((user) => (
-            <option key={user.id} value={user.id}>
-              {user.name}
-            </option>
-          ))}
-        </Form.Select>
-      </div>
+
+
+  {/* User selector */}
+<Form.Select
+
+ className="mt-2 mt-lg-0 overflow-hidden"
+ style={{width: "250px"}}
+
+  value={selectedUserId}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSelectedUserId(value === "ALL" ? "ALL" : Number(value));
+  }}
+>
+  <option value="ALL">All Users</option>
+  {users.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ))}
+</Form.Select>
+
+
+</div>
+
 
       <TasksTable
         tasks={filteredTasks}

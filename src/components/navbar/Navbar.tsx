@@ -12,7 +12,7 @@ export default function Navbar() {
         <Container className="flex-column align-items-stretch">
           <div className="d-flex align-items-center justify-content-between">
             <BsNavbar.Brand as={Link} to="/" className="fw-bold text-primary">
-              TaskFlow
+              Smart Task Manager
             </BsNavbar.Brand>
 
             <Button

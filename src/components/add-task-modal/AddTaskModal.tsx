@@ -25,7 +25,15 @@ export default function AddTaskModal({
   onClose: () => void;
   task?: Task | null;
 }) {
-  const { register, handleSubmit, reset } = useForm<AddTaskForm>();
+  const {
+  register,
+  handleSubmit,
+  reset,
+  formState: { isValid },
+} = useForm<AddTaskForm>({
+  mode: "onChange",
+});
+
   useEffect(() => {
     if (task) {
       reset({
@@ -43,7 +51,6 @@ export default function AddTaskModal({
   }, [task, reset]);
 
   const { data: users, isLoading } = useGetUsersQuery();
-  console.log(users);
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: AddTaskForm) => {
@@ -112,13 +119,18 @@ export default function AddTaskModal({
         </Form>
       </Modal.Body>
 
-      <Modal.Footer>
+      <Modal.Footer className="d-flex justify-content-center align-items-center modal-footer">
         <Button variant="secondary" onClick={onClose}>
           Close
         </Button>
-        <Button variant="primary" type="submit" form="addTaskForm">
-          {task ? "Save Changes" : "Create Task"}
-        </Button>
+        <Button
+  variant="primary"
+  type="submit"
+  form="addTaskForm"
+  disabled={!isValid}
+>
+  {task ? "Save Changes" : "Create Task"}
+</Button>
       </Modal.Footer>
     </Modal>
   );
